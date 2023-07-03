@@ -77,7 +77,7 @@ urlpatterns = [
 ]
 ```
 
-`pyproject.toml
+`pyproject.toml`
 
 `app_1`の部分をDjangoアプリ名に当てはめます。
 
