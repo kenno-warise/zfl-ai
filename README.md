@@ -56,7 +56,7 @@ $ cd django-on-hatch
 
 アップロード済みのDjangoアプリを設定します。
 
-`config/setting.py`
+`config/settings.py`
 
 `app_1`の部分をDjangoアプリ名に当てはめます。
 
