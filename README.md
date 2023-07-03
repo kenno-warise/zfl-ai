@@ -8,18 +8,20 @@
 **目次**
 
 - [詳細](#詳細)
-- [Installation](#installation)
+- [インストール](#インストール)
+- [設定](#設定)
+- [実行](#実行)
 - [License](#license)
 
 ## 詳細
 
-このリポジトリはHatchプロジェクトマネージャーを使ったDjangoプロジェクトのテスト（お試し）ツールです。
+このリポジトリはHatchプロジェクトマネージャーを使ったDjangoプロジェクトの開発またはテスト（お試し）ツールです。
 
-配布用としてアップロードされたDjangoアプリをこのDjangoプロジェクトに組み込んでテストすることができます。
+配布用としてDjangoアプリをアップロードする環境を自動構築または配布用としてアップロードされたDjangoアプリをこのDjangoプロジェクトに組み込んでテストすることができます。
 
 使用方法は以下からご覧ください。
 
-## Installation
+## インストール
 
 Pythonの環境は任意です。
 
@@ -32,14 +34,14 @@ $ python3 --version
 Python 3.10.0
 ```
 
-仮想環境を作成して、`Hatch`をインストールします。
+仮想環境を作成して有効にし、`Hatch`をインストールします。
 
 ```console
 $ python3 -m venv .venv && . .venv/bin/activate
 
-(.venv)$ pip install --upgrade pip
+$ pip install --upgrade pip
 
-(.venv)$ pip install hatch
+$ pip install hatch
 ```
 
 リポジトリを落とします。
@@ -49,6 +51,8 @@ $ git clone https://github.com/kenno-warise/django-on-hatch.git
 
 $ cd django-on-hatch
 ```
+
+## 設定
 
 アップロード済みのDjangoアプリを設定します。
 
@@ -91,6 +95,8 @@ dependencies = ["django", "app_1"]
 [tool.hatch.envs.default.scripts]
 run = "python3 manage.py runserver"
 ```
+
+## 実行
 
 Hatchの環境を使ってDjangoを起動します
 
