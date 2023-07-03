@@ -35,8 +35,8 @@ Documentation = "https://github.com/unknown/Appのパッケージ名#readme"
 Issues = "https://github.com/unknown/Appのパッケージ名/issues"
 Source = "https://github.com/unknown/Appのパッケージ名"
 
-[tool.hatch.version]
-path = "app_1/__init__.py"
+# [tool.hatch.version]
+# path = "app_1/__init__.py"
 
 # デフォルト環境の依存パッケージ
 [tool.hatch.envs.default]
@@ -45,10 +45,11 @@ dependencies = ["django", "app_1"]
 # デフォルト環境のスクリプト
 # hatch run test app_1
 [tool.hatch.envs.default.scripts]
-test = "python3 manage.py test {args}"
+run = "python3 manage.py runserver"
+# test = "python3 manage.py test {args}"
 
 # ビルド実行時に含めるファイルと含めないファイルの設定
 # 以下は配布用Djangoアプリに対しての設定
-[tool.hatch.build]
-include = ["app_1/*"]
-exclude = ["app_1/migrations/*"]
+# [tool.hatch.build]
+# include = ["app_1/*"]
+# exclude = ["app_1/migrations/*"]
