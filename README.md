@@ -56,6 +56,12 @@ $ cd django-on-hatch
 
 ## 設定（開発＆テスト）
 
+Hatchの仮想環境名を作成する。
+
+```console
+$ hatch new --init 仮想環境名（プロジェクト名）
+```
+
 Hatchが配置する仮想環境のディレクトリを決める。
 
 デフォルト設定で配置されるディレクトリは以下のコマンドで参照できる。
@@ -92,6 +98,12 @@ USE_I18N = True
 USE_TZ = True
 ```
 
+データベースを作成する場合はマイグレートを実行します。
+
+```consolw
+$ hatch run migrate
+```
+
 Djangoを起動します。
 
 ```console
@@ -106,10 +118,25 @@ Djangoアプリを作成
 $ hatch run python3 manage.py startapp app_1
 ```
 
+バージョン情報の設定
+
+`pyproject.toml`
+
+```toml
+[tool.hatch.version]
+path = "app_1/__init__.py"
+```
+
+`app_1/__init__.py`
+
+```python
+__version__ = "0.0.1"
+```
+
 ## Djangoプロジェクトに設定（テスト）
 アップロード済みのDjangoアプリを設定します。
 
-`config/settings.py`
+`myproject/settings.py`
 
 `app_1`の部分をDjangoアプリ名に当てはめます。
 
@@ -120,7 +147,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-`config/urls.py`
+`myproject/urls.py`
 
 `app_1`の部分をDjangoアプリ名に当てはめます。
 
@@ -144,9 +171,9 @@ urlpatterns = [
 dependencies = ["django", "app_1"]
 
 # デフォルト環境のスクリプト
-# hatch run run
+# hatch run runserver
 [tool.hatch.envs.default.scripts]
-run = "python3 manage.py runserver"
+runserver = "python3 manage.py runserver"
 ```
 
 ## 実行
@@ -154,15 +181,7 @@ run = "python3 manage.py runserver"
 Hatchの環境を使ってDjangoを起動します
 
 ```console
-$ hatch run run
-Watching for file changes with StatReloader
-Performing system checks...
-
-System check identified no issues (0 silenced).
-July 03, 2023 - 10:57:41
-Django version 4.2.2, using settings 'config.settings'
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
+$ hatch run runserver
 ```
 
 ## License
