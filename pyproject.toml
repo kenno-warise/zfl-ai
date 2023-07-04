@@ -36,7 +36,7 @@ Issues = "https://github.com/unknown/Appのパッケージ名/issues"
 Source = "https://github.com/unknown/Appのパッケージ名"
 
 [tool.hatch.version]
-path = "app_1/__init__.py"
+# path = "app_1/__init__.py"
 
 # デフォルト環境の依存パッケージ
 [tool.hatch.envs.default]
