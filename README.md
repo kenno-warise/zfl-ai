@@ -10,6 +10,8 @@
 - [詳細](#詳細)
 - [インストール](#インストール)
 - [設定](#設定)
+- [Djangoプロジェクトに設定（開発）](#Djangoプロジェクトに設定（開発）)
+- [Djangoプロジェクトに設定（テスト）](#Djangoプロジェクトに設定（テスト）)
 - [実行](#実行)
 - [License](#license)
 
@@ -52,8 +54,59 @@ $ git clone https://github.com/kenno-warise/django-on-hatch.git
 $ cd django-on-hatch
 ```
 
-## 設定
+## 設定（開発＆テスト）
 
+Hatchが配置する仮想環境のディレクトリを決める。
+
+デフォルト設定で配置されるディレクトリは以下のコマンドで参照できる。
+
+```console
+$ hatch config show | grep 'data'
+data = "/home/user/.local/share/hatch"
+```
+
+デフォルト値を変更する場合は以下のコマンドを実行する。
+
+```console
+$ hatch config set dirs.data 配置するディレクトリ
+```
+
+Djangoプロジェクトを作成
+
+```console
+$ hatch run django-admin startproject myproject .
+```
+
+言語を設定します。
+
+```python
+# Internationalization
+# https://docs.djangoproject.com/en/4.2/topics/i18n/
+
+LANGUAGE_CODE = 'ja'
+
+TIME_ZONE = 'Asia/Tokyo'
+
+USE_I18N = True
+
+USE_TZ = True
+```
+
+Djangoを起動します。
+
+```console
+$ hatch run runserver
+```
+
+## Djangoプロジェクトに設定（開発）
+
+Djangoアプリを作成
+
+```console
+$ hatch run python3 manage.py startapp app_1
+```
+
+## Djangoプロジェクトに設定（テスト）
 アップロード済みのDjangoアプリを設定します。
 
 `config/settings.py`

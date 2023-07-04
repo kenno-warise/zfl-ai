@@ -40,12 +40,12 @@ Source = "https://github.com/unknown/Appのパッケージ名"
 
 # デフォルト環境の依存パッケージ
 [tool.hatch.envs.default]
-dependencies = ["django", "app_1"]
+dependencies = ["django"]
 
 # デフォルト環境のスクリプト
-# hatch run test app_1
+# hatch run runserver
 [tool.hatch.envs.default.scripts]
-run = "python3 manage.py runserver"
+runserver = "python3 manage.py runserver"
 # test = "python3 manage.py test {args}"
 
 # ビルド実行時に含めるファイルと含めないファイルの設定
