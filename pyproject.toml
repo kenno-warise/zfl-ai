@@ -35,8 +35,8 @@ Documentation = "https://github.com/unknown/Appのパッケージ名#readme"
 Issues = "https://github.com/unknown/Appのパッケージ名/issues"
 Source = "https://github.com/unknown/Appのパッケージ名"
 
-# [tool.hatch.version]
-# path = "app_1/__init__.py"
+[tool.hatch.version]
+path = "app_1/__init__.py"
 
 # デフォルト環境の依存パッケージ
 [tool.hatch.envs.default]
@@ -55,4 +55,3 @@ runserver = "python3 manage.py runserver"
 # include = ["app_1/*"]
 # exclude = ["app_1/migrations/*"]
 
-[tool.hatch.version]

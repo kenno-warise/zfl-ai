@@ -133,6 +133,13 @@ path = "app_1/__init__.py"
 __version__ = "0.0.1"
 ```
 
+Hatchの「version」コマンドでDjangoアプリのバージョン情報を確認できます。
+
+```console
+$ hatch version
+0.0.1
+```
+
 ## Djangoプロジェクトに設定（テスト）
 アップロード済みのDjangoアプリを設定します。
 
