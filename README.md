@@ -77,6 +77,16 @@ data = "/home/user/.local/share/hatch"
 $ hatch config set dirs.data 配置するディレクトリ
 ```
 
+Hatch仮想環境にインストールされるDjangoは設定されていますが、バージョンを指定したい場合は以下を編集してください。
+
+`pyproject.toml`
+
+```toml
+# デフォルト環境の依存パッケージ
+[tool.hatch.envs.default]
+dependencies = ["django == 4.2.2"]
+```
+
 Djangoプロジェクトを作成
 
 ```console
