@@ -16,7 +16,7 @@ authors = [
 classifiers = [
   "Environment :: Web Environment",
   "Framework :: Django",
-  "Framework :: Django :: X.Y  # Replace "X.Y" as appropriate",
+  "Framework :: Django :: X.Y",  # Replace "X.Y" as appropriate
   "Intended Audience :: Developers",
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
