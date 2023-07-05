@@ -17,13 +17,15 @@
 
 ## 詳細
 
-このリポジトリはHatchプロジェクトマネージャーを使ったDjangoプロジェクトの開発またはテスト（お試し）ツールです。
+このリポジトリは[Hatch](https://hatch.pypa.io/latest/)プロジェクトマネージャーを使ったDjangoプロジェクトの開発またはテスト（お試し）ツールです。
 
 配布用としてDjangoアプリをアップロードする環境を自動構築または配布用としてアップロードされたDjangoアプリをこのDjangoプロジェクトに組み込んでテストすることができます。
 
 使用方法は以下からご覧ください。
 
 ## インストール
+
+実行環境は「Windows Sybsystem for Linux 2」のUbuntuです。
 
 Pythonの環境は任意です。
 
@@ -95,6 +97,8 @@ $ hatch run django-admin startproject myproject .
 
 言語を設定します。
 
+`myproject/settings.py`
+
 ```python
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -150,7 +154,40 @@ $ hatch version
 0.0.1
 ```
 
+DjangoアプリをパッケージングしてPyPIにアップロードする。
+
+`pyproject.toml`に配布するファイルと配布しないファイルを設定。
+
+```toml
+[tool.hatch.build]
+include = ["app_1/*"] # templatesとstaticも含まれます。
+exclude = ["app_1/migrations/*"]
+```
+
+上記以外にあれば追記します。
+
+バージョンを更新する場合は「version」コマンドを実行します。
+
+```console
+$ hatch version micro
+Old: 0.0.1
+New: 0.0.2
+```
+
+ビルドを実行します。
+
+```console
+$ hatch build
+```
+
+アーティファクトを公開します。
+
+```console
+$ hatch publish
+```
+
 ## Djangoプロジェクトに設定（テスト）
+
 アップロード済みのDjangoアプリを設定します。
 
 `myproject/settings.py`
@@ -186,20 +223,33 @@ urlpatterns = [
 # デフォルト環境の依存パッケージ
 [tool.hatch.envs.default]
 dependencies = ["django", "app_1"]
-
-# デフォルト環境のスクリプト
-# hatch run runserver
-[tool.hatch.envs.default.scripts]
-runserver = "python3 manage.py runserver"
 ```
 
-## 実行
+Djangoのコマンドは「tool.hatch.envs.default.scripts」テーブルによって登録しています。
 
-Hatchの環境を使ってDjangoを起動します
+```toml
+[tool.hatch.envs.default.scripts]
+makemigrations = "python3 manage.py makemigrations {args}"
+migrate = "python3 manage.py migrate"
+createsuperuser = "python3 manage.py createsuperuser"
+runserver = "python3 manage.py runserver"
+startapp = "python3 manage.py startapp {args}"
+test = "python3 manage.py test {args}"
+```
+必要であればマイグレートとスーパーユーザーを作成します。
+
+```console
+$ hatch run migrate
+
+$ hatch run createsuperuser
+```
+
+サーバーを起動します。
 
 ```console
 $ hatch run runserver
 ```
+
 
 ## License
 

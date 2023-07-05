@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "myproject" # Appのパッケージ名（PyPIに登録されている名前は使えないので要注意）
+name = "myproject" # Appのパッケージ名（PyPIにアップロードする際は要確認）
 dynamic = ["version"]
 description = ''
 readme = "README.md"
@@ -11,7 +11,7 @@ requires-python = ">=3.7"
 license = "MIT"
 keywords = []
 authors = [
-  { name = "Warise", email = "example@gmail.com" },
+  { name = "You are name", email = "example@gmail.com" },
 ]
 classifiers = [
   "Environment :: Web Environment",
@@ -45,13 +45,16 @@ dependencies = ["django"]
 # デフォルト環境のスクリプト
 # hatch run runserver
 [tool.hatch.envs.default.scripts]
+makemigrations = "python3 manage.py makemigrations {args}"
 migrate = "python3 manage.py migrate"
+createsuperuser = "python3 manage.py createsuperuser"
 runserver = "python3 manage.py runserver"
-# test = "python3 manage.py test {args}"
+startapp = "python3 manage.py startapp {args}"
+test = "python3 manage.py test {args}"
 
 # ビルド実行時に含めるファイルと含めないファイルの設定
 # 以下は配布用Djangoアプリに対しての設定
-# [tool.hatch.build]
-# include = ["app_1/*"]
-# exclude = ["app_1/migrations/*"]
+[tool.hatch.build]
+include = ["app_1/*"]
+exclude = ["app_1/migrations/*"]
 
