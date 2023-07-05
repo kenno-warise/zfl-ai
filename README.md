@@ -27,6 +27,14 @@
 
 実行環境は「Windows Sybsystem for Linux 2」のUbuntuです。
 
+リポジトリを落として「django-on-hatch」ディレクトリに入ります。
+
+```console
+$ git clone https://github.com/kenno-warise/django-on-hatch.git
+
+$ cd django-on-hatch
+```
+
 Pythonの環境は任意です。
 
 私はpyenvを使用してPython3.10の環境を設定しています。
@@ -45,15 +53,7 @@ $ python3 -m venv .venv && . .venv/bin/activate
 
 $ pip install --upgrade pip
 
-$ pip install hatch
-```
-
-リポジトリを落とします。
-
-```console
-$ git clone https://github.com/kenno-warise/django-on-hatch.git
-
-$ cd django-on-hatch
+$ pip install -r requirements.txt
 ```
 
 ## 設定（開発＆テスト）
@@ -112,6 +112,18 @@ USE_I18N = True
 USE_TZ = True
 ```
 
+ショートカットとしてHatchの「run」コマンドで実行できるDjangoのコマンドは`pyproject.toml`の「tool.hatch.envs.default.scripts」テーブルによって登録しています。
+
+```toml
+[tool.hatch.envs.default.scripts]
+makemigrations = "python3 manage.py makemigrations {args}"
+migrate = "python3 manage.py migrate"
+createsuperuser = "python3 manage.py createsuperuser"
+runserver = "python3 manage.py runserver"
+startapp = "python3 manage.py startapp {args}"
+test = "python3 manage.py test {args}"
+```
+
 データベースを作成する場合はマイグレートを実行します。
 
 ```consolw
@@ -129,7 +141,7 @@ $ hatch run runserver
 Djangoアプリを作成
 
 ```console
-$ hatch run python3 manage.py startapp app_1
+$ hatch run startapp app_1
 ```
 
 バージョン情報の設定
@@ -225,17 +237,6 @@ urlpatterns = [
 dependencies = ["django", "app_1"]
 ```
 
-Djangoのコマンドは「tool.hatch.envs.default.scripts」テーブルによって登録しています。
-
-```toml
-[tool.hatch.envs.default.scripts]
-makemigrations = "python3 manage.py makemigrations {args}"
-migrate = "python3 manage.py migrate"
-createsuperuser = "python3 manage.py createsuperuser"
-runserver = "python3 manage.py runserver"
-startapp = "python3 manage.py startapp {args}"
-test = "python3 manage.py test {args}"
-```
 必要であればマイグレートとスーパーユーザーを作成します。
 
 ```console

@@ -6,3 +6,4 @@ manage.py
 myproject
 app_1
 dist
+.python-version
