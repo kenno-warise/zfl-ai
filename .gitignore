@@ -7,3 +7,4 @@ myproject
 app_1
 dist
 .python-version
+.coverage

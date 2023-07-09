@@ -1,0 +1,17 @@
+
+/* ホームの大型ディスプレイ------ */
+/* index.html */
+
+.jumbotron-home {
+  background-color: white;
+  border-bottom: 1px solid violet;
+  margin-bottom: 0;
+}
+
+/* グリッドシステムのデザイン----- */
+
+.container-fluid {
+  margin: 0px;
+}
+
+

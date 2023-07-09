@@ -3,20 +3,20 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "myproject" # Appのパッケージ名（PyPIにアップロードする際は要確認）
+name = "zfl-ai" # Appのパッケージ名（PyPIにアップロードする際は要確認）
 dynamic = ["version"]
-description = ''
+description = 'ai on zfl'
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.7.0"
 license = "MIT"
 keywords = []
 authors = [
-  { name = "You are name", email = "example@gmail.com" },
+  { name = "warise", email = "example@gmail.com" },
 ]
 classifiers = [
   "Environment :: Web Environment",
   "Framework :: Django",
-  "Framework :: Django :: X.Y",  # Replace "X.Y" as appropriate
+  "Framework :: Django :: 2.2.5",  # Replace "X.Y" as appropriate
   "Intended Audience :: Developers",
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
@@ -28,7 +28,15 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "django==2.2.5",
+  "django-imagekit==4.0.2",
+  "h5py==2.10.0", # tensorの依存pkg
+  "numpy==1.16.4",
+  "Pillow==5.4.1",
+  "protobuf==3.20.*", # tensor?google?関連のエラー対策
+  "tensorflow==1.14.0",
+]
 
 [project.urls]
 Documentation = "https://github.com/unknown/Appのパッケージ名#readme"
@@ -36,11 +44,25 @@ Issues = "https://github.com/unknown/Appのパッケージ名/issues"
 Source = "https://github.com/unknown/Appのパッケージ名"
 
 [tool.hatch.version]
-# path = "app_1/__init__.py"
+path = "ai/__init__.py"
 
 # デフォルト環境の依存パッケージ
 [tool.hatch.envs.default]
-dependencies = ["django"]
+dependencies = [
+  "coverage",
+  "django==2.2.5",
+  "django-imagekit==4.0.2",
+  "numpy==1.16.4",
+  "Pillow==5.4.1",
+  "tensorflow==1.14.0",
+]
+# dependencies = [
+#   "django==2.2.5",
+#   "django-imagekit==4.0.2",
+#   "numpy==1.22.4",
+#   "Pillow==9.1.1",
+#   "tensorflow==2.8.1",
+# ]
 
 # デフォルト環境のスクリプト
 # hatch run runserver
@@ -50,11 +72,14 @@ migrate = "python3 manage.py migrate"
 createsuperuser = "python3 manage.py createsuperuser"
 runserver = "python3 manage.py runserver"
 startapp = "python3 manage.py startapp {args}"
+shell = "python3 manage.py shell"
 test = "python3 manage.py test {args}"
+cov = "coverage run --include=ai/* --omit=ai/test*,ai/__init__.py,ai/migrations manage.py test {args}"
+cov-report = "coverage report -m"
 
 # ビルド実行時に含めるファイルと含めないファイルの設定
 # 以下は配布用Djangoアプリに対しての設定
 [tool.hatch.build]
-include = ["app_1/*"]
-exclude = ["app_1/migrations/*"]
+include = ["ai/*"]
+exclude = ["ai/migrations/*"]
 
