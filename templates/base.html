@@ -2,187 +2,20 @@
 <html lang="ja" prefix="og: http://ogp.me/ns#">
   <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <!-- twitter card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@zerofromlight">
-
-    <!-- OGP -->
-    <meta property="og:title" content="#">
-    <meta property="og:description" content="チェック">
-    <meta property="og:url" content="#">
-    <meta property="og:site_name" content="Zerofromlight">
-    <meta property="og:image" content="https://zerofromlight.com{% static '/icon/brand-name-64x64.png' %}">
-
-    <!-- PCとスマホ（タブレット）で表示する内容を切り替える設定 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- BootStrap CSS Link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- ファビコン ブラウザ、アップル、アンドロイド、サファリ-->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static '/icon/favicon_1.ico' %}">
-    <link rel="apple-touch-icon" href="{% static '/icon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" href="{% static '/icon/android-chrome-256x256.png' %}">
-    <link rel="mask-icon" href="{% static '/icon/safari-pinned-tab.svg' %}" color="#5bbad5">
-
-    <!-- Webサイトタイトル -->
-    <title>{% block title %}ZerofromLight{% endblock %}</title>
 
     <!-- StaticFiles CSS -->
-    <link rel="stylesheet" href="{% static 'home/css/base-style.css' %}">
-    <!-- block home-style endblock 
-    block blogs-style  endblock
-    block detail-style  endblock
-    block data-style  endblock -->
     {% block ai-style %}{% endblock %}
-
-    <!-- 追尾ボタンに仕様するアイコンフォント（Font Awesome）-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!-- 一般ユーザーのみアナリティクス適用 -->
-    <!-- if not request.user.is_authenticated %}-->
-    <!-- Googleアナリティクス読み込み（上UA 下GA4） -->
-    <!-- if GOOGLE_ANALYTICS_TRACKING_ID %}
-    include 'home/ga.html' 
-    include 'home/ga4.html' 
-    endif
-    endif -->
-
-    <!-- Google Charts -->
-    <!-- block google_charts  endblock -->
 
   </head>
   <body>
-    <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg navbar-light p-1 navbar-base">
-      <a class="navbar-brand" href="#">
-	<img src="{% static '/icon/brand-name-64x64.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
-	<ul class="navbar-nav nav">
-	  <li class="nav-item active">
-	    <a class="nav-link text-white-50" href="#"><strong>Home </strong><span class="sr-only">(現在地)</span></a>
-	  </li>
-	</ul>
-	<ul class="navbar-nav">
-	  <li class="nav-item">
-	    <a class="nav-link text-white-50" href="#"><strong>概要</strong></a>
-	  </li>
-	</ul>
-	<ul class="navbar-nav">
-	  <li class="nav-item">
-	    <a class="nav-link text-white-50" href="#"><strong>News</strong></a>
-	  </li>
-	</ul>
-	
-	<ul class="navbar-nav">
-	  <li class="nav-item">
-	    <a class="nav-link text-white-50" href="#"><strong>Blog</strong></a>
-	  </li>
-	</ul>
-	<ul class="navbar-nav">
-	  <li class="nav-item">
-	    <a class="nav-link text-white-50" href="#"><strong>Data</strong></a>
-	  </li>
-	</ul>
-	<ul class="navbar-nav">
-	  <li class="nav-item">
-	    <a class="nav-link text-white-50" href="{% url 'ai:index'%}"><strong>ネコ科分類器</strong></a>
-	  </li>
-	</ul>
-	  <ul class="navbar-nav">
-	  <li class="nav-item">
-	    <a class="nav-link text-white" href="#">非公開 </a>
-	  </li>
-	  </ul>
-	  
-
-		<a href="#" class="form-inline my-2 my-lg-0">
-	  <button class="btn btn-secondary btn-sm my-2 my-sm-0" type="button">LOGOUT</button>
-	</a>
-	      </div>
-    </nav>
 
     <!-- Djangoテンプレートタグ -->
 
     {% block content %}
     {% endblock %}
-
-    <!--Footer -->
-    <div class="jumbotron jumbotron-fluid jumbotron-footer">
-      <div class="container">
-	<div class="row">
-	  <div class="col-lg-4 col-sm-12">
-	    <p class="lead"><strong>Zerofromlightについては</strong></p>
-	    <ul class="text-white-50">
-	      <li><a class="text-white-50" href="#">概要</a></li>
-	      <li><a class="text-white-50" href="#">News</a></li>
-	      <li><a class="text-white-50" href="#">プライバシー・ポリシー</a></li>
-	      <li><a class="text-white-50" href="#">お問い合わせ</a></li>
-	    </ul>
-	  </div>
-	  <div class="col-lg-4 col-sm-12">
-	    <p class="lead"><strong>サービスについては</strong></p>
-	    <ul class="text-white-50">
-	      <li><a class="text-white-50" href="#">Blog</a></li>
-	      <li><a class="text-white-50" href="#">Data</a></li>
-	      <li><a class="text-white-50" href="{% url 'ai:index' %}">ネコ科分類器</a></li>
-	    </ul>
-	  </div>
-	  <div class="col-lg-4 col-sm-12">
-	    <p class="lead"><strong>SNSをフォローする</strong></p>
-	    <!-- Twitterアイコン -->
-	    <a href="https://twitter.com/zerofromlight?ref_src=twsrc%5Etfw"  data-show-count="false">
-	      <img src="{% static '/icon/twitter-icon.png' %}">
-	    </a>
-	  </div>
-	</div>
-      </div>
-    </div>
-    <!-- footer終わり -->
-
-    <nav class="navbar bottom navbar-dark navbar-base">
-      <p class="navbar-brand">&copy; 2019-2023 ZerofromLight</p>
-    </nav>
-
-    <!-- 目次追随ボタン -->
-    <!-- ページ上部アイコン -->
-    <div id="page_top"><a href="#"></a></div>
-
-    <!-- MathJax ３月２日導入-->
-    <script>
-      MathJax = {
-	chtml: {
-	  matchFontHeight: false
-	},
-	tex: {
-	  inlineMath: [['$', '$']]
-	}
-      };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
-    <!-- PCの表示時だけ適用 -->
-    <div class="for-pc">
-    <!-- 一般ユーザーのみアドセンス適用 -->
-    <!-- Googleアドセンス-->
-    <script data-ad-client="ca-pub-8998062142810819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    </div>
-
-    <!-- twitterアイコン用 -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-    <!-- シンタックスハイライト -->
-    <script type="text/javascript" src="#"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
 
     <!-- BootStrap jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
