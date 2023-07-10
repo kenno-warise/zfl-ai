@@ -1,7 +1,7 @@
-from django import forms
+from django import forms # type: ignore
 
-from imagekit.forms import ProcessedImageField
-from imagekit.processors import ResizeToFill
+from imagekit.forms import ProcessedImageField # type: ignore
+from imagekit.processors import ResizeToFill # type: ignore
 
 
 class ImageUploadForm(forms.Form):

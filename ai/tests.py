@@ -1,31 +1,29 @@
-from django.test import TestCase
-from django.urls import reverse
+import numpy as np  # type: ignore
+from django.test import TestCase  # type: ignore
+from django.urls import reverse  # type: ignore
 from PIL import Image
-import numpy as np
 
 from ai.cat_cnn import predict
-from ai.views import IndexView
 
 
 def sample_img():
-    img = Image.open('ai/static/ai/cat_1.jpg').resize((50, 50)).convert('RGB')
+    img = Image.open("ai/static/ai/cat_1.jpg").resize((50, 50)).convert("RGB")
 
     img_array = np.asarray(img)
-    X = []
-    X.append(img_array)
-    X = np.array(X)
-    return X
+    img_cmp = []
+    img_cmp.append(img_array)
+    img_cmp = np.array(img_cmp)
+    return img_cmp
 
 
 class PredictTests(TestCase):
-
     def test_predict(self):
         """
         予測結果を返すcat_cnn.pyのpredict関数のテスト
         """
         img = sample_img()
         result = predict(img)
-        self.assertIsInstance(result, str, '戻り値は文字列')
+        self.assertIsInstance(result, str, "戻り値は文字列")
 
 
 # ビューのテスト
@@ -41,11 +39,12 @@ class IndexViewTests(TestCase):
         """
         /ai/の結果表示
         """
-        with open('ai/static/ai/cat_1.jpg', 'rb') as f:
-            response = self.client.post(reverse("ai:index"), {'file':f})
+        with open("ai/static/ai/cat_1.jpg", "rb") as f:
+            response = self.client.post(reverse("ai:index"), {"file": f})
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '猫')
-        self.assertContains(response, 'ライオン')
-        self.assertContains(response, 'チーター')
+        self.assertContains(response, "猫")
+        self.assertContains(response, "ライオン")
+        self.assertContains(response, "チーター")
+
 
 # Create your tests here.
