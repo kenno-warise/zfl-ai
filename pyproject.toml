@@ -50,11 +50,11 @@ path = "ai/__init__.py"
 [tool.hatch.envs.default]
 dependencies = [
   "coverage",
-  "django==2.2.5",
-  "django-imagekit==4.0.2",
-  "numpy==1.16.4",
-  "Pillow==5.4.1",
-  "tensorflow==1.14.0",
+#   "django==2.2.5",
+#   "django-imagekit==4.0.2",
+#   "numpy==1.16.4",
+#   "Pillow==5.4.1",
+#   "tensorflow==1.14.0",
 ]
 # dependencies = [
 #   "django==2.2.5",
