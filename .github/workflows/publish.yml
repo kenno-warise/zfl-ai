@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Upload Python Package
+name: Upload Django app Package
 
 on:
   workflow_dispatch:
@@ -33,5 +33,5 @@ jobs:
       run: hatch build
     - name: Publish package
       run : |
-        hatch publish -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
+        hatch publish -u __token__ -a ${{ secrets.PYPI_API_TOKEN }}
 
