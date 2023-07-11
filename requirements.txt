@@ -1,2 +1,7 @@
-hatch==1.7.0
-keyrings.alt==4.2.0
+django==2.2.5
+django-imagekit==4.0.2
+h5py==2.10.0
+numpy==1.16.4
+Pillow==5.4.1
+protobuf==3.20.*
+tensorflow==1.14.0

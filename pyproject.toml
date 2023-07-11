@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-requirements-txt"]
 build-backend = "hatchling.build"
 
 [project]
-name = "zfl-ai" # Appのパッケージ名（PyPIにアップロードする際は要確認）
-dynamic = ["version"]
+name = "zfl-ai"
+dynamic = ["version", "dependencies"]
 description = 'ai on zfl'
 readme = "README.md"
 requires-python = ">=3.7.0"
@@ -23,20 +23,14 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = [
-  "django==2.2.5",
-  "django-imagekit==4.0.2",
-  "h5py==2.10.0", # tensorの依存pkg
-  "numpy==1.16.4",
-  "Pillow==5.4.1",
-  "protobuf==3.20.*", # tensor?google?関連のエラー対策
-  "tensorflow==1.14.0",
-]
 
 [project.urls]
 Documentation = "https://github.com/unknown/Appのパッケージ名#readme"
 Issues = "https://github.com/unknown/Appのパッケージ名/issues"
 Source = "https://github.com/unknown/Appのパッケージ名"
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = ["requirements.txt"]
 
 [tool.hatch.version]
 path = "ai/__init__.py"
@@ -45,19 +39,7 @@ path = "ai/__init__.py"
 [tool.hatch.envs.default]
 dependencies = [
   "coverage",
-#   "django==2.2.5",
-#   "django-imagekit==4.0.2",
-#   "numpy==1.16.4",
-#   "Pillow==5.4.1",
-#   "tensorflow==1.14.0",
 ]
-# dependencies = [
-#   "django==2.2.5",
-#   "django-imagekit==4.0.2",
-#   "numpy==1.22.4",
-#   "Pillow==9.1.1",
-#   "tensorflow==2.8.1",
-# ]
 
 # デフォルト環境のスクリプト
 # hatch run runserver
