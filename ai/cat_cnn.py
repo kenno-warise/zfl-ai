@@ -18,8 +18,10 @@ def predict(img):
     モデルのロード
     """
 
-    print(os.listdir("./"))
-    model = load_model("ai/catai_cnn_new.h5")
+    file_path = "ai/catai_cnn_new.h5"
+    if not os.path.isfile(file_path):
+        file_path = "catai_cnn_new.h5"
+    model = load_model(file_path)
     result = model.predict([img])[0]
     predicted = result.argmax()
     return str(classes[predicted])
