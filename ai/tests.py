@@ -3,7 +3,7 @@ from django.test import TestCase  # type: ignore
 from django.urls import reverse  # type: ignore
 from PIL import Image
 
-from ai.cat_cnn import predict
+from ai.cat_cnn import abs_path_file, predict
 
 
 def sample_img():
@@ -17,13 +17,29 @@ def sample_img():
 
 
 class PredictTests(TestCase):
+    def setUp(self):
+        self.img = sample_img()
+        self.file_path = abs_path_file()
+
+    def tearDown(self):
+        del self.img
+        del self.file_path
+
     def test_predict(self):
         """
         予測結果を返すcat_cnn.pyのpredict関数のテスト
         """
-        img = sample_img()
-        result = predict(img)
+
+        result = predict(self.img, self.file_path)
         self.assertIsInstance(result, str, "戻り値は文字列")
+
+    def test_predict_raise(self):
+        """
+        学習済みモデルが存在しない場合のテスト
+        """
+
+        with self.assertRaises(ValueError):
+            predict(self.img, "ai/catcnn_old.h5")
 
 
 # ビューのテスト

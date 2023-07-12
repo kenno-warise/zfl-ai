@@ -3,7 +3,7 @@ from django.shortcuts import render  # type: ignore
 from django.views import generic  # type: ignore
 from PIL import Image
 
-from .cat_cnn import predict
+from .cat_cnn import abs_path_file, predict
 from .forms import ImageUploadForm
 
 
@@ -29,9 +29,11 @@ class IndexView(generic.FormView):
         img_cmp.append(img_array)
         img_cmp_array = np.array(img_cmp)
 
+        file_path = abs_path_file()
+
         # 推論した結果を、テンプレートへ渡して表示
         context = {
-            "result": predict(img_cmp_array),
+            "result": predict(img_cmp_array, file_path),
         }
         return render(self.request, "ai/index.html", context)
 

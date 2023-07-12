@@ -13,14 +13,26 @@ from tensorflow.keras.models import load_model  # type: ignore
 classes = ["猫", "ライオン", "チーター"]
 
 
-def predict(img):
+def abs_path_file():
     """
-    モデルのロード
+    学習済みモデルの取得
     """
 
     file_path = "ai/catai_cnn_new.h5"
     if not os.path.isfile(file_path):
-        file_path = "catai_cnn_new.h5"
+        abs_path = os.path.abspath(__file__)
+        dir_path = os.path.dirname(abs_path)
+        file_path = os.path.join(dir_path, "catai_cnn_new.h5")
+    return file_path
+
+
+def predict(img, file_path):
+    """
+    モデルのロード
+    """
+
+    if not os.path.isfile(file_path):
+        raise ValueError
     model = load_model(file_path)
     result = model.predict([img])[0]
     predicted = result.argmax()
