@@ -26,7 +26,7 @@ djangoプロジェクトでインストールできるDjangoアプリです。
 
 ```console
 $ python3 --version
-Python 3.7.0
+Python 3.6.9
 ```
 
 Djangoアプリはpipでインストールします。
