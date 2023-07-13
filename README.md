@@ -3,12 +3,14 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/django-hatch.svg)](https://pypi.org/project/django-hatch)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django-hatch.svg)](https://pypi.org/project/django-hatch)
 
+![zfl-ai_1](https://github.com/kenno-warise/zfl-ai/assets/51676019/8ed643a6-140f-447d-89cd-932da3f462b9)
+
 -----
 
 **目次**
 
 - [詳細](#詳細)
-- [インストール](#インストール)
+- [インストールとDjangoプロジェクト作成](#インストールとDjangoプロジェクト作成)
 - [Djangoプロジェクトに設定（テスト）](#Djangoプロジェクトに設定（テスト）)
 - [License](#license)
 
@@ -18,20 +20,19 @@ djangoプロジェクトでインストールできるDjangoアプリです。
 
 使用方法は以下からご覧ください。
 
-## インストール
+## インストールとDjangoプロジェクト作成
 
 実行環境は「Python3.7」、「Django2.2.5」です。
+
+```console
+$ python3 --version
+Python 3.7.0
+```
 
 Djangoアプリはpipでインストールします。
 
 ```console
 $ pip install zfl-ai
-```
-
-GitHubからインストールする場合。
-
-```console
-$ pip github+
 ```
 
 Djangoプロジェクトを作成
@@ -57,9 +58,44 @@ USE_I18N = True
 USE_TZ = True
 ```
 
-## Djangoプロジェクトに設定（テスト）
+## Djangoプロジェクトにプラグイン
 
-「templates/base.html」を作成します。
+Djangoアプリを設定します。
+
+`myproject/settings.py`
+
+```python
+INSTALLED_APPS = [
+    ...,
+    "ai",
+]
+```
+
+プロジェクト直下のtemplatesを読み込むように設定。
+
+```python
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        ...
+    },
+]
+```
+
+`myproject/urls.py`
+
+```python
+...
+from django.urls import path, include
+
+urlpatterns = [
+    ...,
+    path('', include('ai.urls')),
+]
+```
+
+zfl-aiのテンプレートである「index.html」ではテンプレートタグ「{% extends '...' %}」で「base.html」を読み込むように設定しているので、「templates/base.html」を作成する必要があります。
 
 ```console
 $ mkdir templates && touch templates/base.html
@@ -96,40 +132,6 @@ base.htmlの内容
 </html>
 ```
 
-Djangoアプリを設定します。
-
-`myproject/settings.py`
-
-```python
-INSTALLED_APPS = [
-    ...,
-    "ai",
-]
-```
-
-プロジェクト直下のtemplatesを読み込むように設定。
-
-```python
-TEMPLATES = [
-    {
-        ...
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        ...
-    },
-]
-```
-
-`myproject/urls.py`
-
-```python
-...
-from django.urls import path, include
-
-urlpatterns = [
-    ...,
-    path('', include('ai.urls')),
-]
-```
 
 サーバーを起動します。
 
