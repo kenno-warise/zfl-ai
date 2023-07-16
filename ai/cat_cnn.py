@@ -23,6 +23,7 @@ def abs_path_file():
         abs_path = os.path.abspath(__file__)
         dir_path = os.path.dirname(abs_path)
         file_path = os.path.join(dir_path, "catai_cnn_new.h5")
+        return file_path
     return file_path
 
 

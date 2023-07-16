@@ -16,6 +16,12 @@ def sample_img():
     return img_cmp
 
 
+class AbsPathTests(TestCase):
+    def test_abs_path_file(self):
+        file_path = abs_path_file()
+        self.assertEqual(file_path, "ai/catai_cnn_new.h5")
+
+
 class PredictTests(TestCase):
     def setUp(self):
         self.img = sample_img()
@@ -56,7 +62,7 @@ class IndexViewTests(TestCase):
         /ai/の結果表示
         """
         with open("ai/static/ai/cat_1.jpg", "rb") as f:
-            response = self.client.post(reverse("ai:index"), {"file": f})
+            response = self.client.post(path=reverse("ai:index"), data={"file": f})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "猫")
         self.assertContains(response, "ライオン")
