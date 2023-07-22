@@ -11,7 +11,7 @@
 
 - [詳細](#詳細)
 - [インストールとDjangoプロジェクト作成](#インストールとDjangoプロジェクト作成)
-- [Djangoプロジェクトに設定（テスト）](#Djangoプロジェクトに設定（テスト）)
+- [Djangoプロジェクトにプラグイン](#Djangoプロジェクトにプラグイン)
 - [License](#license)
 
 ## 詳細
@@ -26,7 +26,7 @@ djangoプロジェクトでインストールできるDjangoアプリです。
 
 ```console
 $ python3 --version
-Python 3.6.9
+Python 3.7.0
 ```
 
 Djangoアプリはpipでインストールします。
