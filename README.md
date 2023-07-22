@@ -10,11 +10,8 @@
 **目次**
 
 - [詳細](#詳細)
-
 - [インストールとDjangoプロジェクト作成](#インストールとDjangoプロジェクト作成)
-
 - [Djangoプロジェクトにプラグイン](#Djangoプロジェクトにプラグイン)
-
 - [License](#license)
 
 ## 詳細
@@ -141,6 +138,8 @@ base.htmlの内容
 ```console
 $ python3 manage.py runserver
 ```
+
+`127.0.0.1:8000/ai/`にアクセスします。
 
 ## License
 
